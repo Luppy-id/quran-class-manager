@@ -26,12 +26,26 @@ Ganti `USERNAME` dan `quran-manager` sesuai kebutuhan.
    ```
 5. **Deploy** (tunggu 2-3 menit)
 
-## Langkah 3: Test PWA
+## Langkah 3: Setup Admin
 
-1. Buka URL hasil deploy di mobile
-2. Akan muncul banner "Install Aplikasi"
-3. Klik **INSTALL**
-4. Done! ✅
+**PENTING! Lakukan ini dulu sebelum test aplikasi:**
+
+1. Login ke **Supabase Dashboard**
+2. Buka **Authentication → Users**
+3. **Add User** (admin pertama)
+4. Auto confirm user
+5. Catat email & password
+
+**Detail:** Lihat [SETUP_ADMIN.md](./SETUP_ADMIN.md)
+
+## Langkah 4: Test Login & PWA
+
+1. Buka URL hasil deploy
+2. **Login** dengan credentials admin
+3. Berhasil masuk dashboard ✅
+4. Test di mobile - muncul banner "Install Aplikasi"
+5. Klik **INSTALL**
+6. Done! ✅
 
 ## URL Aplikasi
 

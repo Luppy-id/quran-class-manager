@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { useAuth, supabase } from './AuthContext';
+import Login from './Login';
 import {
   BookOpen,
   Users,
@@ -26,7 +27,8 @@ import {
   Award,
   ArrowUpCircle,
   Library,
-  Smartphone
+  Smartphone,
+  LogOut
 } from 'lucide-react';
 
 const QURAN_SURAHS = [
@@ -133,11 +135,6 @@ function doPost(e) {
 function doGet() {
   return ContentService.createTextOutput("Service is Active!").setMimeType(ContentService.MimeType.TEXT);
 }`;
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 interface Student {
   id: string;
@@ -281,6 +278,7 @@ const ProgressModal = ({ student, onClose, onUpdate }: any) => {
 };
 
 const App = () => {
+  const { user, loading: authLoading, signOut } = useAuth();
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -683,11 +681,15 @@ const App = () => {
     setDeferredPrompt(null);
   };
 
-  if (loading) return (
+  if (authLoading || loading) return (
     <div className="h-screen flex items-center justify-center bg-white animate-pulse">
       <BookOpen size={48} className="text-emerald-600" />
     </div>
   );
+
+  if (!user) {
+    return <Login />;
+  }
 
   return (
     <div className="min-h-screen bg-[#fcfdfc] flex flex-col pb-20 md:pb-0 md:pl-64 font-sans text-emerald-950">
@@ -751,12 +753,20 @@ const App = () => {
             </button>
           ))}
         </nav>
-        <div className="mt-auto pt-6 border-t border-emerald-900/50 text-emerald-500">
-            <p className="text-[8px] font-bold uppercase tracking-widest mb-1 opacity-60">Developed By</p>
-            <a href="https://wa.me/62895612466176" target="_blank" rel="noopener noreferrer" className="group block hover:bg-emerald-900/50 p-2 rounded-xl transition-all">
-                <span className="text-[11px] font-black text-white group-hover:text-emerald-400">Achmad Luthfi C, M.Pd.</span>
-                <span className="text-[9px] flex items-center gap-1 mt-0.5"><MessageCircle size={10}/> Chat via WA</span>
-            </a>
+        <div className="mt-auto space-y-4">
+            <button
+              onClick={signOut}
+              className="w-full flex items-center gap-3 p-4 rounded-2xl font-black text-sm transition-all text-red-300 hover:text-red-200 hover:bg-red-900/20 border border-red-900/30"
+            >
+              <LogOut size={20} /> Logout
+            </button>
+            <div className="pt-4 border-t border-emerald-900/50 text-emerald-500">
+                <p className="text-[8px] font-bold uppercase tracking-widest mb-1 opacity-60">Developed By</p>
+                <a href="https://wa.me/62895612466176" target="_blank" rel="noopener noreferrer" className="group block hover:bg-emerald-900/50 p-2 rounded-xl transition-all">
+                    <span className="text-[11px] font-black text-white group-hover:text-emerald-400">Achmad Luthfi C, M.Pd.</span>
+                    <span className="text-[9px] flex items-center gap-1 mt-0.5"><MessageCircle size={10}/> Chat via WA</span>
+                </a>
+            </div>
         </div>
       </aside>
 

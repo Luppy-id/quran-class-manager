@@ -8,6 +8,24 @@ Aplikasi ini sudah dilengkapi dengan:
 - 🔄 Service Worker untuk offline capability
 - 🎨 App manifest dengan branding
 - 📱 Responsive di semua perangkat
+- 🔐 **Admin Authentication** - Hanya admin terdaftar yang bisa akses
+
+---
+
+## 🔐 PENTING: Setup Admin Setelah Deploy
+
+**Sebelum aplikasi bisa digunakan, Anda HARUS membuat admin user terlebih dahulu!**
+
+Setelah deploy selesai, ikuti langkah berikut:
+
+1. **Login ke Supabase Dashboard** (https://supabase.com)
+2. **Buka Authentication → Users**
+3. **Add User** → Buat admin pertama
+4. **Test login** di aplikasi dengan credentials admin
+
+**Panduan lengkap:** Lihat [SETUP_ADMIN.md](./SETUP_ADMIN.md)
+
+⚠️ **Tanpa setup admin, aplikasi tidak bisa diakses!**
 
 ---
 

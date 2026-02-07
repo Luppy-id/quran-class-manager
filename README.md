@@ -2,13 +2,15 @@
 
 Aplikasi manajemen kelas Al-Quran dengan Progressive Web App (PWA) support. Bisa diinstall di semua perangkat dan berfungsi offline.
 
-## ✨ Fitur PWA
+## ✨ Fitur
 
+- 🔐 **Admin Authentication** - Login dengan email/password
 - 📲 **Installable** - Install seperti aplikasi native di mobile & desktop
 - 🔄 **Offline Support** - Berfungsi tanpa internet setelah install
 - 🚀 **Fast Loading** - Caching untuk performa maksimal
 - 📱 **Responsive** - Sempurna di semua ukuran layar
 - 🔔 **Auto Update** - Update otomatis saat ada versi baru
+- 🛡️ **Secure** - Database protected dengan RLS policies
 
 ## 🚀 Quick Start
 
@@ -31,6 +33,17 @@ npm run build
 # Preview production build
 npm run preview
 ```
+
+## 🔐 Setup Admin (PENTING!)
+
+**Sebelum menggunakan aplikasi, Anda harus setup admin terlebih dahulu:**
+
+1. Deploy aplikasi ke Vercel/Netlify
+2. Login ke Supabase Dashboard
+3. Buat user admin pertama
+4. Login ke aplikasi dengan credentials admin
+
+**Panduan lengkap:** Lihat [SETUP_ADMIN.md](./SETUP_ADMIN.md)
 
 ## 📦 Deploy
 
